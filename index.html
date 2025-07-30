@@ -3,196 +3,150 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Jogo da Memória</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Jogo da Memória - One Piece</title>
+    <link rel="stylesheet" href="./style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Pirata+One&family=Roboto:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <div class="area-inicial" id="area-inicial">
-        <div class="area-start">
-            <div id="logo"></div>
-            <button id="start">Start</button>
+    <!-- Tela Inicial -->
+    <div class="start-screen" id="start-screen">
+        <div class="start-container">
+            <div class="logo-container">
+                <img src="./assets/imgs/logo.png" alt="One Piece Logo" class="main-logo">
+                <h1>Jogo da Memória</h1>
+            </div>
+            <button class="start-button" id="start-button">
+                <span>Começar Jornada</span>
+                <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M5 12H19M19 12L12 5M19 12L12 19" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/>
+                </svg>
+            </button>
         </div>
     </div>
 
-    <div class="gamewin">
-        <div class="area-gamewin">
-          <h2>Congratulations!!<br>You have completed<br>the one piece<br>memory game!!</h2>
-          <div class="buttons">
-            <button id="home"> <img src="assets/imgs/homeIcon.png" alt="">back to home</button>
-          </div>
+    <!-- Tela de Vitória -->
+    <div class="win-screen" id="win-screen">
+        <div class="win-container">
+            <div class="win-content">
+                <h2>Parabéns, Nakama!</h2>
+                <p>Você completou o jogo da memória de One Piece!</p>
+                
+                <div class="stats-container">
+                    <div class="stat-box">
+                        <img src="./assets/imgs/time-icon.png" alt="Tempo">
+                        <div>
+                            <span class="stat-label">Tempo</span>
+                            <span class="stat-value" id="final-time">00:00</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <img src="./assets/imgs/moves-icon.png" alt="Movimentos">
+                        <div>
+                            <span class="stat-label">Movimentos</span>
+                            <span class="stat-value" id="final-moves">0</span>
+                        </div>
+                    </div>
+                    <div class="stat-box">
+                        <img src="./assets/imgs/quiz-icon.png" alt="Quiz">
+                        <div>
+                            <span class="stat-label">Acertos Quiz</span>
+                            <span class="stat-value" id="final-quiz">0/0</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="win-buttons">
+                    <button class="win-btn" id="home-button">
+                        <img src="./assets/imgs/home-icon.png" alt="Início">
+                        Voltar ao Início
+                    </button>
+                    <button class="win-btn" id="save-button">
+                        <img src="./assets/imgs/trophy-icon.png" alt="Salvar">
+                        Salvar Pontuação
+                    </button>
+                </div>
+            </div>
+            <div class="win-image">
+                <img src="./assets/imgs/win-image.png" alt="Luffy comemorando">
+            </div>
         </div>
     </div>
 
-    <div class="container-principal">
-        <div class="container">
-            <input type="text" id="comp">
-            <input type="text" id="comp2">
-        
-                <div class="fig fig1" id="fig1" onclick="comp(0)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back1">
-                      </div>
+    <!-- Quiz Modal -->
+    <div class="quiz-modal" id="quiz-modal">
+        <div class="quiz-content">
+            <h2 id="quiz-question">Pergunta</h2>
+            <div class="quiz-options" id="quiz-options">
+                <!-- Opções serão geradas dinamicamente -->
+            </div>
+            <div class="quiz-feedback" id="quiz-feedback"></div>
+        </div>
+    </div>
+
+    <!-- Área do Jogo -->
+    <div class="game-container" id="game-container">
+        <header class="game-header">
+            <div class="header-content">
+                <div class="logo-small">
+                    <img src="./assets/imgs/logo-small.png" alt="One Piece Logo">
+                </div>
+                <div class="game-controls">
+                    <button class="control-btn" id="restart-button">
+                        <img src="./assets/imgs/restart-icon.png" alt="Reiniciar">
+                        Reiniciar
+                    </button>
+                </div>
+            </div>
+        </header>
+
+        <main class="game-main">
+            <div class="memory-board" id="memory-board">
+                <!-- Cartas serão geradas dinamicamente -->
+            </div>
+
+            <aside class="game-info">
+                <div class="info-card timer-card">
+                    <div class="info-icon">
+                        <img src="./assets/imgs/time-icon.png" alt="Tempo">
+                    </div>
+                    <div class="info-content">
+                        <h3>Tempo</h3>
+                        <p id="timer-display">00:00</p>
+                    </div>
                 </div>
 
-                <div class="fig fig1" id="fig2" onclick="comp(1)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back2">
-                    
-                      </div>
+                <div class="info-card moves-card">
+                    <div class="info-icon">
+                        <img src="./assets/imgs/moves-icon.png" alt="Movimentos">
+                    </div>
+                    <div class="info-content">
+                        <h3>Movimentos</h3>
+                        <p id="moves-display">0</p>
+                    </div>
                 </div>
 
-                <div class="fig fig2" id="fig3" onclick="comp(2)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back3">
-                        
-                      </div>
+                <div class="info-card pairs-card">
+                    <div class="info-icon">
+                        <img src="./assets/imgs/pairs-icon.png" alt="Pares">
+                    </div>
+                    <div class="info-content">
+                        <h3>Pares</h3>
+                        <p id="pairs-display">0/8</p>
+                    </div>
                 </div>
+            </aside>
+        </main>
 
-                <div class="fig fig2" id="fig4" onclick="comp(3)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back4">
-                        
-                      </div>
-                </div>
-        
-                <div class="fig fig3" id="fig5" onclick="comp(4)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back5">
-                    
-                      </div>
-                </div>
-
-                <div class="fig fig3" id="fig6" onclick="comp(5)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back6">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig4" id="fig7" onclick="comp(6)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back7">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig4" id="fig8" onclick="comp(7)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back8">
-                    
-                      </div>
-                </div>
-        
-                <div class="fig fig5" id="fig9" onclick="comp(8)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back9">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig5" id="fig10" onclick="comp(9)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back10">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig6" id="fig11" onclick="comp(10)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back11">
-                    
-                      </div>
-                </div>
-
-                <div class="fig fig6" id="fig12" onclick="comp(11)">
-                    <div class="card-front">
-                      
-                      </div>
-                      <div class="card-back" id="card-back12">
-                    
-                      </div>
-                </div>
-        
-                <div class="fig fig7" id="fig13" onclick="comp(12)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back13">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig7" id="fig14" onclick="comp(13)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back14">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig8" id="fig15" onclick="comp(14)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back15">
-                        
-                      </div>
-                </div>
-
-                <div class="fig fig8" id="fig16" onclick="comp(15)">
-                    <div class="card-front">
-                        
-                      </div>
-                      <div class="card-back" id="card-back16">
-                        
-                      </div>
-                </div>
-        
-                <div class="acertos">
-                  <h2>Pares encontrados:</h2>
-                  <p id="paresCounter">0</p>
-                </div>
-
-                <div class="cronometro">
-                  <h2>Cronômetro:</h2>
-                  <p id="cronometro"></p>
-                </div>
-                <input type="text" id="valor1" placeholder="valor1">
-                <input type="text" id="valor2" placeholder="valor2">
-
-              </div>
-              
-              <div class="area-hall">
-                <ol id="listaHall">
-                    <li>Nome - Segundos</li>
+        <aside class="hall-of-fame">
+            <h2>Hall da Fama</h2>
+            <div class="fame-list-container">
+                <ol id="fame-list">
+                    <li class="empty-message">Nenhum recorde ainda</li>
                 </ol>
+            </div>
+        </aside>
+    </div>
 
-                <h2>EM BREVE</h2>
-              </div>
-      </div>
-    <script src="script.js"></script>
+    <script src="./script.js"></script>
 </body>
 </html>
